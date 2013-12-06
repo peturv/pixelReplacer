@@ -24,11 +24,15 @@ public class PixelReplacer {
     void replacePixels(ArgumentParser arguments, BufferedImage img) {
         int imgHeight = img.getHeight();
         int imgWidth = img.getWidth();
+
         for(int y = 0; y < imgHeight; y++) {
+
             for(int x = 0; x < imgWidth; x++) {
+
                 if(img.getRGB(x, y) != arguments.getExclusionColor()) {
                     img.setRGB(x, y, arguments.getReplacementColor());
                 }
+
             }
         }
     }
@@ -43,8 +47,8 @@ public class PixelReplacer {
 
     File writeFile(ArgumentParser arguments, BufferedImage img, String newFilePrefix) throws IOException {
         String oldImageFileName = arguments.getImage().getAbsolutePath();
-        String type = oldImageFileName.substring(oldImageFileName.lastIndexOf("."));
-        File newImage = new File(arguments.getImage().getParentFile().getAbsolutePath() + File.pathSeparator + newFilePrefix + "_" + arguments.getImage().getName());
+        String type = oldImageFileName.substring(oldImageFileName.lastIndexOf(".")+1).toLowerCase();
+        File newImage = new File(arguments.getImage().getParentFile().getAbsolutePath() + File.separator + newFilePrefix + "_" + arguments.getImage().getName());
         try {
             ImageIO.write(img, type, newImage);
             return newImage;
@@ -55,7 +59,7 @@ public class PixelReplacer {
 
     private static void printUsage() {
         System.out.println("Usage: pixelReplacer.jar image replacementColor doNotReplaceColor");
-        System.out.println("for colors use rgb codes without preceding hash; cecece.");
+        System.out.println("for colors use rgb codes including preceding hash; #cecece.");
     }
 
     public static void main(String[] args) {

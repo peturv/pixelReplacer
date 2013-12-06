@@ -40,7 +40,7 @@ public class ArgumentParser {
     }
 
     public void setReplacementColor(String replacementColor) {
-        this.setReplacementColor(Color.decode(replacementColor));
+        this.setReplacementColor(Color.decode(replacementColor.toUpperCase()));
     }
 
     public int getExclusionColor() {
@@ -52,7 +52,7 @@ public class ArgumentParser {
     }
 
     public void setExclusionColor(String exclusionColor) {
-        this.setExclusionColor(Color.decode(exclusionColor));
+        this.setExclusionColor(Color.decode(exclusionColor.toUpperCase()));
     }
 
     void validateArguments(String[] args) {
